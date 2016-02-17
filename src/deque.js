@@ -5,7 +5,7 @@ function Deque()
 	this.dequeue = dequeue;
 	this.addFront = addFront;
 	this.removeEnd = removeEnd;
-	this.front = front;
+	this.peek = peek;
 	this.back = back;
 	this.toString = toString;
 	this.empty = empty;	
@@ -55,3 +55,27 @@ function empty()
 {
 	return this.data.length == 0;
 }
+
+//fix
+
+function testPalindrome(word)
+{
+	var s = new Deque();
+	for(var i = 0; i < word.length; i++)
+	{
+		s.enqueue(word[i]);
+	}
+	
+	var isPal = true; // We will give it the benefit of the doubt :)
+
+	while(s.data.length != 1 || s.data.length != 0 && isPal)
+	{
+		isPal = (s.dequeue() == s.removeEnd())
+	}
+	 
+	return isPal;
+}
+
+console.log(testPalindrome("racecar"));
+console.log(testPalindrome("Zerg"));
+
