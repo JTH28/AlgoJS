@@ -1,8 +1,10 @@
-function Queue()
+function Deque()
 {
 	this.data = [];
 	this.enqueue = enqueue;
 	this.dequeue = dequeue;
+	this.addFront = addFront;
+	this.removeEnd = removeEnd;
 	this.front = front;
 	this.back = back;
 	this.toString = toString;
@@ -19,7 +21,17 @@ function dequeue()
 	return this.data.shift();
 }
 
-function front()
+function addFront(element)
+{
+	this.data.unshift(element);
+}
+
+function removeEnd()
+{
+	this.data.pop();
+}
+
+function peek()
 {
 	return this.data[0];
 }
