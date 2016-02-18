@@ -28,7 +28,7 @@ function addFront(element)
 
 function removeEnd()
 {
-	this.data.pop();
+	return this.data.pop();
 }
 
 function peek()
@@ -67,9 +67,11 @@ function testPalindrome(word)
 	}
 	
 	var isPal = true; // We will give it the benefit of the doubt :)
+	var count = 1;
 
-	while(s.data.length != 1 || s.data.length != 0 && isPal)
+	while(s.data.length != 1 && isPal)
 	{
+		
 		isPal = (s.dequeue() == s.removeEnd())
 	}
 	 

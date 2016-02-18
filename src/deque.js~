@@ -28,7 +28,7 @@ function addFront(element)
 
 function removeEnd()
 {
-	this.data.pop();
+	return this.data.pop();
 }
 
 function peek()
@@ -56,6 +56,8 @@ function empty()
 	return this.data.length == 0;
 }
 
+//fix
+
 function testPalindrome(word)
 {
 	var s = new Deque();
@@ -65,9 +67,13 @@ function testPalindrome(word)
 	}
 	
 	var isPal = true; // We will give it the benefit of the doubt :)
+	var count = 1;
 
-	while(s.data.length != 1 || s.data.length != 0 && isPal)
+	while(s.data.length != 1 && isPal)
 	{
+		console.log(s.dequeue());
+		console.log(s.removeEnd());
+		
 		isPal = (s.dequeue() == s.removeEnd())
 	}
 	 
