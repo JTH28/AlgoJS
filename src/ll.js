@@ -11,24 +11,28 @@ function LL() {
 LL.prototype.insert = function(element) {
     var node = new Node(element);
     var curNode = this.head;
-    
+
     if(this.head == null) {
         this.head = node;
         this.length++;
-        
+
         return node;
     }
-    
+
     while(curNode.next) {
         curNode = curNode.next;
     }
     curNode.next = node;
     this.length++;
-    
+
     return node;
 }
 
-LL.prototype.search = function(element) {
+LL.prototype.insertNth = function(element, index) {
+    
+}
+
+LL.prototype.contains = function(element) {
     var curNode = this.head;
     for(var i = 0; i < this.length; i++) {
         if(curNode.value == element) {
@@ -45,17 +49,57 @@ LL.prototype.print = function() {
         console.log(curNode.value);
         curNode = curNode.next;
     }
-    console.log(curNode);
+    console.log(curNode.value);
+}
+
+LL.prototype.getNth = function(index) {
+    var curNode = this.head;
+
+    if(index > this.length) {
+        throw new Error("This index is greater than the list length");
+    }
+
+    for(var i = 0; i <index; i++) {
+        curNode = curNode.next;
+    }
+    return curNode;
+}
+
+LL.prototype.pop = function() {
+    if(this.length == 0) {
+        return null
+    }
+    var val = this.head.value;
+    this.head = this.head.next;
+    return val;
 }
 
 LL.prototype.reverse = function() {
     var curNode = this.head;
     var prevNode = null;
-    var tmp = this.head;
-    
-    while(tmp != null) {
-        tmp = tmp.next;
-        curNode.next = prevNode;		
+    var nextNode = this.head;
+
+    while(curNode != null) {
+        nextNode = curNode.next;
+        curNode.next = prevNode;
         prevNode = curNode;
-    }	
+        curNode = nextNode;
+    }
+    this.head = prevNode;
 }
+
+var doper = new LL();
+
+doper.insert("Greg")
+doper.insert("is")
+doper.insert("a")
+doper.insert("doper")
+
+/*
+var a = doper.getNth(6).value;
+console.log(a);
+*/
+
+var x = doper.pop();
+
+doper.print();
