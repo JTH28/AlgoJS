@@ -29,7 +29,7 @@ LL.prototype.insert = function(element) {
 }
 
 LL.prototype.insertNth = function(element, index) {
-    
+
 }
 
 LL.prototype.contains = function(element) {
@@ -87,19 +87,3 @@ LL.prototype.reverse = function() {
     }
     this.head = prevNode;
 }
-
-var doper = new LL();
-
-doper.insert("Greg")
-doper.insert("is")
-doper.insert("a")
-doper.insert("doper")
-
-/*
-var a = doper.getNth(6).value;
-console.log(a);
-*/
-
-var x = doper.pop();
-
-doper.print();
