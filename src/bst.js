@@ -47,10 +47,17 @@ BST.prototype.insert = function(value) {
 
 }
 
+BST.prototype.inOrder = function(node){
+    if(node != null) {
+        this.inOrder(node.left);
+        console.log(node.value);
+        this.inOrder(node.right);
+    }
+}
+
 var testBST = new BST();
 testBST.insert(2);
 testBST.insert(1);
 testBST.insert(3);
 
-
-console.log(testBST.head);
+testBST.inOrder(testBST.head);
