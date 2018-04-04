@@ -1,45 +1,45 @@
-function Queue()
-{
-	this.data = [];
-	this.enqueue = enqueue;
-	this.dequeue = dequeue;
-	this.front = front;
-	this.back = back;
-	this.toString = toString;
-	this.empty = empty;	
-}
-
-function enqueue(element)
-{
-	this.data.push(element);
-}
-
-function dequeue()
-{
-	return this.data.shift();
-}
-
-function front()
-{
-	return this.data[0];
-}
-
-function back()
-{
-	return this.data[this.data.length - 1];
-}
-
-function toString()
-{
-	var str = "";
-	for(var i = 0; i < this.data.length; i++)
-	{
-		str += this.data[i] + "\n";
+class Queue {
+	constructor(){
+		this.data = [];
 	}
-	return str;
+
+	enqueue(element) {
+		this.data.push(element);
+	}
+
+	dequeue() {
+		return this.data.shift();
+	}
+
+	front() {
+		return this.data[0];
+	}
+
+	back() {
+		return this.data[this.data.length - 1];
+	}
+
+
+	toString() {
+		let str = "";
+		for(let element of this.data)
+		{
+			str += element + " ";
+		}
+		return str;
+	}
+
+	empty() {
+		return this.data.length == 0;
+	}
 }
 
-function empty()
-{
-	return this.data.length == 0;
-}
+let testQue = new Queue();
+testQue.enqueue(1);
+testQue.enqueue(2);
+testQue.enqueue(3);
+testQue.enqueue(4);
+testQue.enqueue(5);
+console.log(testQue.toString());
+testQue.dequeue();
+console.log(testQue.toString());

@@ -4,44 +4,21 @@ class Set{
     }
 
     contains(element){
-        if(this.dataStore.indexOf(element) > -1){
-            return true;
-        } else {
-            return false;
-        }
+        return this.dataStore.includes(element);
     }
 
-    findpos(element){ // fix me
-        var pos = 0;
-        if(this.dataStore.length == 0 || this.dataStore[0] > element){
-            return 0;
-        } else {
-            //pos++;
-            while(this.dataStore[pos] < element){
-                pos++;
-            }
-            return pos + 1;
-        }
-    }
-
+    //The add function will enforce the set property of nonduplicity
     add(element) {
         if(!this.contains(element)){
-            var pos = this.findpos();
-            console.log("pos: " + pos);
-            this.dataStore.splice(pos, 0, element);
-            return true;
-        } else {
-            return false;
+            this.dataStore.push(element);
         }
+        return this;
     }
 
     remove(element) {
-        var pos = this.dataStore.indexOf(element);
-        if(pos > -1){
-            this.dataStore.splice(pos, 1);
-            return true;
+        if(this.dataStore.includes(element)){
+            this.dataStore = this.dataStore.filter( i => i !== element);
         }
-        return false;
     }
 
     size(){
@@ -49,32 +26,31 @@ class Set{
     }
 
     union(set){
-        var tempSet = new Set();
-        for(var i = 0; i < this.dataStore.length; i++){
-            tempSet.add(this.dataStore[i]);
+        let tempSet = new Set();
+
+        for(let element of this.dataStore){
+            tempSet.add(element);
         }
 
-        for(var j = 0; j < set.dataStore.length; j++){
-            if(!tempSet.contains(set.dataStore[j])){
-                tempSet.add(set.dataStore[j]);
-            }
+        for(let element of set.dataStore){
+            tempSet.add(element);
         }
         return tempSet;
     }
 
     intersect(set) {
-        var tempSet = new Set();
-        for(var i = 0; i < set.dataStore.length; i++){
-            if(this.contains(set.dataStore[i])){
-                tempSet.add(set.dataStore[i]);
+        let tempSet = new Set();
+        for(let element of this.dataStore){
+            if(set.contains(element)){
+                tempSet.add(element);
             }
         }
         return tempSet;
     }
 
     subset(set){
-        for(var i = 0; i < set.dataStore.length; i++){
-            if(!this.contains(set.dataStore[i])){
+        for(let element of set){
+            if(!this.contains(element)){
                 return false;
             }
         }
@@ -82,10 +58,10 @@ class Set{
     }
 
     difference(set){
-        var tempSet = new Set();
-        for(var i = 0; i < set.dataStore.length; i++){
-            if(!this.contains(set.dataStore[i])){
-                tempSet.add(set.dataStore[i]);
+        let tempSet = new Set();
+        for(let element of this.dataStore){
+            if(!set.contains(element)){
+                tempSet.add(element);
             }
         }
         return tempSet;
@@ -96,7 +72,7 @@ class Set{
     }
 }
 
-var basicSet = new Set();
+let basicSet = new Set();
 
 basicSet.add(1);
 basicSet.add(2);
@@ -115,13 +91,13 @@ secondSet.add(4);
 secondSet.add(5);
 secondSet.add(6);
 
-var unionedSet = basicSet.union(secondSet);
+let unionedSet = basicSet.union(secondSet);
 unionedSet.show();
 
-var orgSet = basicSet.intersect(unionedSet);
+let orgSet = basicSet.intersect(unionedSet);
 orgSet.show();
 
 console.log(basicSet.subset(orgSet));
 
-var difSet = basicSet.difference(unionedSet);
+let difSet = basicSet.difference(unionedSet);
 difSet.show();

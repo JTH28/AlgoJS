@@ -1,9 +1,9 @@
-function Node(value) {
-    this.value = value;
+class Node(value) {
+    this.data = value;
     this.next = null;
 }
 
-function LL() {
+function LinkedList() {
     this.length = 0;
     this.head = null;
 }

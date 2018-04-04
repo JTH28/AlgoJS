@@ -1,4 +1,4 @@
-class Node{
+class Node {
     constructor(key, data) {
         this.key = key;
         this.data = data;
@@ -6,21 +6,20 @@ class Node{
 }
 
 class HashTable {
-
     constructor() {
         this.table = new Array(137);
         this.buildChains();
     }
 
     buildChains(){
-        for(var i = 0; i < this.table.length; i++){
+        for(let i = 0; i < this.table.length; i++){
             this.table[i] = [];
         }
     }
 
-    testDistro(){
-        var totEntries = 0;
-        for(var i = 0; i < this.table.length; i++){
+    testDistro() {
+        let totEntries = 0;
+        for(let i = 0; i < this.table.length; i++){
             console.log( i + ": " + "chain length: " + this.table[i].length);
             totEntries += this.table[i].length;
         }
@@ -28,8 +27,8 @@ class HashTable {
     }
 
     put(key, data) {
-        var pos = this.hash(key);
-        var index = 0;
+        let pos = this.hash(key);
+        let index = 0;
         if(this.table[pos][index] == undefined){
             this.table[pos][index] = new Node(key,data);
         } else {
@@ -41,9 +40,9 @@ class HashTable {
     }
 
     get(key){
-        var index = 0;
-        var pos = this.hash(key);
-        for(var i = 0; i < this.table[pos].length; i++){
+        let index = 0;
+        let pos = this.hash(key);
+        for(let i = 0; i < this.table[pos].length; i++){
             if(this.table[pos][i].key == key){
                 return this.table[pos][i].data;
             }
@@ -53,8 +52,8 @@ class HashTable {
 
     hash(string){
         const H = 31;
-        var total = 0;
-        for(var i = 0; i < string.length; i++){
+        let total = 0;
+        for(let i = 0; i < string.length; i++){
             total += H * total + string.charCodeAt(i);
         }
         total = total % this.table.length;
@@ -65,9 +64,9 @@ class HashTable {
     }
 }
 
-var ht = new HashTable();
+let ht = new HashTable();
 
-for(var i = 0 ; i < 10000; i++){
+for(let i = 0 ; i < 10000; i++){
     ht.put(i.toString(), i.toString());
 }
 
